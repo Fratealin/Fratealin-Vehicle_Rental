@@ -9,6 +9,19 @@ import java.util.Scanner;
  * COMMENTS ABOUT PROGRAM HERE
  */
 public class TestRental {
+
+   private static void pause()
+   {
+      System.out.println("Pausing to let you see it.");
+      try
+      {
+         Thread.sleep(2000);
+      } catch (InterruptedException e)
+      {
+         e.printStackTrace();
+      }
+   } // pause
+
    public static void main(String[] args) {
 
       Scanner keyboard = new Scanner(System.in);
@@ -59,15 +72,26 @@ public class TestRental {
       System.out.println(carRental2);
 
 
-      //automate appending
-      VehicleRental[] rentalsArray={carRental1,carRental2};
+      // Code to call Aldrians search class
 
-      MPVRental mpvRental1=new MPVRental("MPV","POP 345",2000,10,500,15);
+      // create HGV object
+      HGVRental hgvRental1 = new HGVRental("HGV","HGV Make","RAD 945",1000,10,400);
+      System.out.println("Here is and HGV");
+      System.out.println(hgvRental1);
+
+      pause();
+
+
+      MPVRental mpvRental1=new MPVRental("Ford","POP 345",2000,10,500,15);
       //set end miles for MPV rental1
       System.out.println("Enter the end mileage for MPVrental1");
       endMilege = keyboard.nextInt();
       mpvRental1.setEndMileage(endMilege);
       System.out.println("========================");
+
+
+      //automate appending
+      VehicleRental[] rentalsArray= {carRental1,carRental2, mpvRental1, hgvRental1};
 
       int choice;
       //String yesOrNo;
@@ -90,17 +114,12 @@ public class TestRental {
             break;
       }
 
+      pause();
+      // end of search
 
 
-
-
-
-
-
-
-
-      //create a couple of buses
-      System.out.println("Instating a couple of buses and saving them to an array");
+      //create an array of buses
+      System.out.println("Instating an array of buses and saving them to an array");
 
       int MAX = 10;
       MPVRental[] arrayOfBusOrders = new MPVRental[MAX];
