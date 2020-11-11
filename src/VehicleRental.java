@@ -1,4 +1,3 @@
-//package GroupProject;
 
 import java.text.DecimalFormat;
 import java.util.Arrays;
@@ -18,7 +17,7 @@ abstract public class VehicleRental {
    DecimalFormat df = new DecimalFormat("0.00");
 
    //variables required for constructor methods to create an object of the VehicleRental class
-   private String make, regNum;
+   private String make, regNum,rentalType;
    private int startMileage, rentalID, numDays;
    private double dailyCost;
    private static int countVehiclesRented=0, uniqueNum = 10001;
@@ -43,8 +42,7 @@ abstract public class VehicleRental {
       countVehiclesRented++;
       discount= randomSelection();
       // ali editted
-      endMileage = startMileage;
-
+      // endMileage = startMileage;
    }//end default constructor method
 
    //alternative constructor method with 5 constructor variables passed as parameters
@@ -60,6 +58,24 @@ abstract public class VehicleRental {
       discount = randomSelection();
       // ali editted
       endMileage = startMileage;
+   }//end alternative constructor
+
+
+   //alternative constructor method with 6 constructor variables passed as parameters
+   public VehicleRental(String itsType,String itsMake, String itsRegNum, int MilesBefore, int lengthDays, double dailyFee){
+      make=itsMake;
+      regNum=itsRegNum;
+      startMileage=MilesBefore;
+      rentalID=uniqueNum;
+      numDays=lengthDays;
+      dailyCost=dailyFee;
+      uniqueNum++;
+      countVehiclesRented++;
+      discount = randomSelection();
+      // ali editted
+      //endMileage = startMileage;
+      rentalType=itsType;
+
    }//end alternative constructor
 
    //alternative constructor method
@@ -163,14 +179,18 @@ abstract public class VehicleRental {
    }//end getDailyCost()
 
    //method to setEndMileage()
-   protected void setEndMileage(int mileageAfter) {
-      endMileage=mileageAfter;
+   public void setEndMileage(int mileageAfter) {
+      endMileage= mileageAfter;
    }//end  setEndMileage()
 
    //method to getEndMileage()
    protected int getEndMileage() {
       return endMileage;
    }//end getEndMileage()
+
+   protected String getRentalType() {
+      return rentalType;
+   }
 
    //method to calculate averageDailyMiles()
    protected double calculateAverageDailyMiles(){
@@ -179,23 +199,23 @@ abstract public class VehicleRental {
 
    //method to calculate additional fee based on mileage
    protected double calculateAdditionalFee(){
-      return ((calculateAverageDailyMiles() - DAILY_MILES_ALLOWED)*numDays)*EXTRA_FEE_PER_MILE;
+      return (calculateAverageDailyMiles() - DAILY_MILES_ALLOWED)*numDays*EXTRA_FEE_PER_MILE;
    }//end calculateAdditionalFee
 
    //method to calulcate totol Rental price
    protected double calculateTotalRentalCost(){
       totalRentalCost= (dailyCost*numDays)+calculateAdditionalFee();
-      totalRentalCost=totalRentalCost-((totalRentalCost/100)*randomSelection());
+      totalRentalCost=totalRentalCost-((totalRentalCost/100)*discount);
       return totalRentalCost;
    }//end calculatetotalRentalCost()
 
-   //method to populate array with int values representing discount
+/*   //method to populate array with int values representing discount
    protected static void updateDiscountList(){
       for (int index=0; index<DISCOUNT_ITEMS; index++){
          System.out.println("Enter the value Discount (%): "+ (index+1)+" of "+ DISCOUNT_ITEMS);
          percentageDiscount[index]= keyboard.nextInt();
       }//end for
-   }// end updateDiscountList()
+   }// end updateDiscountList()*/
 
    //method to populate array with int values representing discount
    protected static void autoUpdateDiscountList(){
@@ -205,6 +225,7 @@ abstract public class VehicleRental {
       for (int index=0; index<DISCOUNT_ITEMS; index++){
          percentageDiscount[index]= r.nextInt(MAX);
       }//end for
+
       // display array of discounts
       System.out.print("This is the array of percentage discounts: ");
       String result = Arrays.stream(percentageDiscount).mapToObj(String::valueOf).collect(Collectors.joining(", "));
@@ -229,21 +250,71 @@ abstract public class VehicleRental {
 
    //toString Method
    public String toString() {
-      return "Rental ID: " + rentalID + "\n"+
+      String message;
+      message= "Rental ID: " + rentalID + "\n"+
             "Vehicle Make: " + make + "\n" +
             "Registration Number: " + regNum + "\n" +
-            "Start Mileage: " + startMileage + " miles\n" +
-            "End Mileage: " + endMileage + " miles\n"+
-            "Rental Duration (Days): " + numDays + "\n"+
-            "Daily Mileage Allowance: " + DAILY_MILES_ALLOWED + " miles\n" +
-            "Average Daily Miles: " + df.format(calculateAverageDailyMiles()) + "\n"+
-            "Daily Cost: £" + df.format(dailyCost) + "\n"+
-            "Extra Fee: £" + df.format(EXTRA_FEE_PER_MILE) +" per mile\n"+
-            "Additional Miles (over that contracted): "+
-            df.format((calculateAverageDailyMiles()*numDays)-(DAILY_MILES_ALLOWED*numDays)) +"\n"+
-            "Discount Percentage applied: " + discount+" %\n"+
-            "Total Cost (after "+discount+" % discount applied): £" + df.format(calculateTotalRentalCost());
+            "Rental Duration (Days): " + numDays + "\n";
+      if(dailyCost==-999){
+         message=message+" Daily Cost: (not provided)\n";
+      }//end if
+      else{
+         message=message+" Daily Cost: £" + df.format(dailyCost) + "\n";
+      }//end else
+      if(dailyCost*numDays<0){
+         message = message+ "Total Cost (before any additional fees): unable to calculate. More information needed\n";
+      }//end if
+      else{
+         message = message+ "Total Cost (before any additional fees): £"+df.format(dailyCost*numDays)+"\n"+
+               "Daily Mileage Allowance: " + DAILY_MILES_ALLOWED + " miles\n" +
+               "Start Mileage: " + startMileage + " miles\n";
+      }//end else
+      if(endMileage==0) {
+         message=message+"End Mileage: to be recorded on vehilce return\n";
+      }//end if
+      else {
+         message=message+"End Mileage: "+endMileage+" miles\n";
+      }//end else
+      if (calculateAverageDailyMiles()<0) {
+         message = message+ "Average Daily Miles: to be calculated on vehicle return\n";
+      }//end if
+      else{
+         message = message+"Average Daily Miles: "+df.format(calculateAverageDailyMiles())+" miles\n";
+      }//end else
+      if(endMileage>startMileage){
+         if((calculateAverageDailyMiles()*numDays)-(DAILY_MILES_ALLOWED*numDays)>0){
+            message=message+"Additional Miles (over that contracted): " +
+                  df.format((calculateAverageDailyMiles()*numDays)-(DAILY_MILES_ALLOWED*numDays))+"\n";
+         }//end if
+         else{
+            message=message+"Additional Miles (over that contracted): 0\n";
+         }//end else
+
+      }//end if
+      else {
+         message = message + "Additional Miles (over that contracted): to be calculated on vehicle return\n";
+      }//end else
+      if((endMileage>startMileage)){
+         if(((calculateAverageDailyMiles() > DAILY_MILES_ALLOWED))){
+            message=message+"Extra Fee: £" + df.format(EXTRA_FEE_PER_MILE) +" per mile: £"
+                  + df.format(((calculateAverageDailyMiles()*numDays)-(DAILY_MILES_ALLOWED*numDays))
+                  *EXTRA_FEE_PER_MILE)+"\n";
+         }//end if
+         else{
+            message=message+ "Extra Fee: £0.20 per mile: £0.00 \n";
+         }//end else
+      }//end if
+      else{
+         message=message+"Extra Fee: £" + df.format(EXTRA_FEE_PER_MILE) +" per mile:to be calculated on vehicle return\n";
+      }//end else
+      message=message+"Discount Percentage applied (selected at random): " + discount +"%\n";
+      if(calculateTotalRentalCost()<=0){
+         message=message+"Total Cost (after "+discount+" % discount applied): to be calculated on vehicle return\n";
+      }//end if
+      else{
+         message=message+"Total Cost (after "+discount+" % discount applied): £" + df.format(calculateTotalRentalCost());
+      }//end else
+      return message;
    }//end toString method
 
 }//class
-
