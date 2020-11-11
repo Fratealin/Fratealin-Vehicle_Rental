@@ -58,6 +58,47 @@ public class TestRental {
       System.out.println("carRental2 : Final details on return of vehicle");
       System.out.println(carRental2);
 
+
+      //automate appending
+      VehicleRental[] rentalsArray={carRental1,carRental2};
+
+      MPVRental mpvRental1=new MPVRental("MPV","POP 345",2000,10,500,15);
+      //set end miles for MPV rental1
+      System.out.println("Enter the end mileage for MPVrental1");
+      endMilege = keyboard.nextInt();
+      mpvRental1.setEndMileage(endMilege);
+      System.out.println("========================");
+
+      int choice;
+      //String yesOrNo;
+
+      Scanner scanner = new Scanner(System.in);
+
+      System.out.println("Your Options (please enter a number):");
+      System.out.println("1. Search By Rental Type  \n2. Search all rentals");
+
+      choice = scanner.nextInt();
+
+      switch (choice)
+      {
+         case 1:
+            Search.searchByType(rentalsArray);
+            break;
+
+         case 2:
+            Search.searchAllRentals(rentalsArray);
+            break;
+      }
+
+
+
+
+
+
+
+
+
+
       //create a couple of buses
       System.out.println("Instating a couple of buses and saving them to an array");
 
