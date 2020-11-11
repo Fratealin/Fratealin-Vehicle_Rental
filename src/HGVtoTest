@@ -1,0 +1,44 @@
+//create HGV rental object
+
+      System.out.println("Create 2 HGV rental objects");
+      System.out.println();
+      HGVRental HGVrental1 =new HGVRental("HGV", "Merc", "DEF 3453", 40000,7, 75.00, 2.80, 500  );
+
+      HGVRental HGVrental2 = new HGVRental("HGV", "Volvo", "BFO 0983", 45000, 5, 80.00);
+
+      //output HGV rental Object1
+      System.out.println("HGVrental1 details");
+      System.out.println(HGVrental1);
+      System.out.println();
+      System.out.println("Set the end mileage of HGVrental1: ");
+      endMilege = keyboard.nextInt();
+      HGVrental1.setEndMileage(endMilege);
+      System.out.println();
+      System.out.println("HGVrental1 Final details: ");
+      System.out.println(HGVrental1);
+      System.out.println();
+
+
+      System.out.println("===================");
+      System.out.println("HGVrental2 details");
+      System.out.println(HGVrental2);
+      System.out.println();
+
+      //set height and load capacity of HGVrental2
+      System.out.println("Complete details for HGVrental2: ");
+      System.out.println("Enter the height of HGVrental2: (m) ");
+      provideDouble = keyboard.nextDouble();
+      HGVrental2.setHeight(provideDouble);
+      System.out.println();
+      System.out.println("Enter the working load capacity of HGVrental2: (kg) ");
+      provideDouble= keyboard.nextDouble();
+      HGVrental2.setLoadCapacity(provideDouble);
+      System.out.println();
+
+      //set end mileage
+      System.out.println("Set the end mileage of HGVrental2: ");
+      endMilege= keyboard.nextInt();
+      HGVrental2.setEndMileage(endMilege);
+      System.out.println();
+      System.out.println("HGVrental2 Final details: ");
+      System.out.println(HGVrental2);
