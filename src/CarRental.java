@@ -26,6 +26,7 @@ public class CarRental extends VehicleRental {
       seats=carSeats;
       doors=carDoors;
       countCarsRented++;
+      String carType = "Car";
    }
 
    //alternative constructor2
@@ -33,6 +34,7 @@ public class CarRental extends VehicleRental {
       super(carReg,carMilesBefore,lengthDays);
       seats=carSeats;
       doors=0;
+      String carType = "Car";
    }
 
    protected int getSeats() {

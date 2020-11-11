@@ -25,14 +25,14 @@ public class MPVRental extends VehicleRental {
    }
 
    //alternative constructor1
-   public MPVRental(String busMake,String busReg,int busMilesBefore,int lengthDays,double dailyFee, int busSeats){
-      super(busMake,busReg,busMilesBefore,lengthDays,dailyFee);
+   public MPVRental(String MPVtype, String busMake,String busReg,int busMilesBefore,int lengthDays,double dailyFee, int busSeats){
+      super(MPVtype, busMake,busReg,busMilesBefore,lengthDays,dailyFee);
       seats=busSeats;
       countBusesRented++;
    }
 
    //alternative constructor2
-   public MPVRental(String busReg,int busMilesBefore,int lengthDays,int busSeats){
+   public MPVRental(String MPVtype, String busReg,int busMilesBefore,int lengthDays,int busSeats){
       super(busReg,busMilesBefore,lengthDays);
       seats=busSeats;
    }

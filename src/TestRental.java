@@ -22,6 +22,8 @@ public class TestRental {
       }
    } // pause
 
+
+
    public static void main(String[] args) {
 
       Scanner keyboard = new Scanner(System.in);
@@ -38,6 +40,11 @@ public class TestRental {
 
       System.out.println("======================");
 
+
+      System.out.println();
+
+      CarRental testCar = new("Car");
+
       //create new carRental
       System.out.println("Create carRental1 object");
       CarRental carRental1 =new CarRental("VW", "ABC 123", 123000, 7,75.00,6,5);
@@ -52,10 +59,14 @@ public class TestRental {
 
       //print final details on return of carRental1
       System.out.println("carRental1 : Final details on return of vehicle");
-      System.out.println(carRental1);
+
+      System.out.println("printing type");
+      System.out.println(carRental1.getRentalType());
 
       System.out.println();
       System.out.println("====================");
+
+      System.out.println();
 
       //create carRental2
       System.out.println("Create carRental2 object");
@@ -67,12 +78,12 @@ public class TestRental {
       endMilege = keyboard.nextInt();
       carRental2.setEndMileage(endMilege);
 
-      //print final details on return of carRental1
+      //print final details on return of carRental2
       System.out.println("carRental2 : Final details on return of vehicle");
       System.out.println(carRental2);
 
 
-      // Code to call Aldrians search class
+      // Code to create objects for Aldrians search class
 
       // create HGV object
       HGVRental hgvRental1 = new HGVRental("HGV","HGV Make","RAD 945",1000,10,400);
@@ -82,7 +93,7 @@ public class TestRental {
       pause();
 
 
-      MPVRental mpvRental1=new MPVRental("Ford","POP 345",2000,10,500,15);
+      MPVRental mpvRental1=new MPVRental("MPV","Ford","POP 345",2000,10,500,15);
       //set end miles for MPV rental1
       System.out.println("Enter the end mileage for MPVrental1");
       endMilege = keyboard.nextInt();
@@ -115,6 +126,8 @@ public class TestRental {
       }
 
       pause();
+
+      String a = scanner.nextLine();
       // end of search
 
 
@@ -127,7 +140,7 @@ public class TestRental {
 
       for(int i = 0; i < MAX; i++){
          // setting values
-         MPVRental thisMPVOrder = new MPVRental("Mini", "asd 343", 2000, 10, 400, 8);
+         MPVRental thisMPVOrder = new MPVRental("Bus","Mini", "asd 343", 2000, 10, 400, 8);
          thisMPVOrder.setSeats(2+r.nextInt(40));
          int endMileage = 2000 + r.nextInt(1000);
          thisMPVOrder.setEndMileage(endMileage);

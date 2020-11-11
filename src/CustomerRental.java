@@ -35,7 +35,7 @@ public class CustomerRental
 
       for(int i = 0; i < NUMBER_OF_BUSES; i++){
          // setting values
-         MPVRental thisMPVOrder = new MPVRental("Mini", "asd 343", 2000, 10, 400, 8);
+         MPVRental thisMPVOrder = new MPVRental("Bus", "Mini", "asd 343", 2000, 10, 400, 8);
          thisMPVOrder.setSeats(2+r.nextInt(40));
          int endMileage = 2000 + r.nextInt(1000);
          thisMPVOrder.setEndMileage(endMileage);
