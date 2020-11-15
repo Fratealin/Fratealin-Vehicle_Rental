@@ -1,0 +1,280 @@
+/*package GroupProject;
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.Random;
+import java.util.Scanner;
+
+*//**
+ * Created by Ali Dore on 29/10/2020
+ * COMMENTS ABOUT PROGRAM HERE
+ *//*
+public class CustomerRental{
+   // creating arrays to store orders in
+   private static final int NUMBER_OF_BUSES = 10;
+   public static MPVRental[] arrayOfBusOrders = new MPVRental[NUMBER_OF_BUSES];
+   private static final int NUMBER_OF_CARS = 5;
+   public static CarRental[] arrayOfCarOrders = new CarRental[NUMBER_OF_CARS];
+
+
+   
+
+
+
+
+   static DecimalFormat df = new DecimalFormat("£###,##0");
+   static DecimalFormat currencyFormat = new DecimalFormat("£###,##0.00");
+   static Scanner keyboard = new Scanner(System.in);
+
+   //variables made static by Patrick to be used when creating new rental orders.
+   static String make, reg;
+   static int beforeMiles, numDays,endMiles=0;
+   static double dailyFee;*/
+
+   //set details - created by Patrick 11/11/2o
+   /*protected static void setDetails(){
+      System.out.println("Please enter make:");
+      make = keyboard.nextLine();
+      VehicleRental.setMake(make);
+      keyboard.nextLine();
+      System.out.println();
+      System.out.println("Please enter Registration number:");
+      reg =keyboard.nextLine();
+      VehicleRental.setRegNum(reg);
+      System.out.println();
+      System.out.println("Please enter Start Miles:");
+      beforeMiles = keyboard.nextInt();
+      VehicleRental.setStartMileage(beforeMiles);
+      VehicleRental.setEndMileage(endMiles);
+      System.out.println();
+      System.out.println("Please enter length of rental (number of days):");
+      numDays= keyboard.nextInt();
+      VehicleRental.setNumDays(numDays);
+      System.out.println();
+      System.out.println("Please enter Daily Fee (£):");
+      dailyFee = keyboard.nextDouble();
+      VehicleRental.setDailyCost(dailyFee);
+
+   }//end getDetails()*/
+
+  /* //method called from main menu to create HGV Order - created by Patrick 11/11/20
+   protected static void createHGVOrder(){
+
+      double height, loadCapacity;
+
+      System.out.println("Please enter make:");
+      make = keyboard.nextLine();
+      //VehicleRental.setMake(make);
+      keyboard.nextLine();
+      System.out.println();
+      System.out.println("Please enter Registration number:");
+      reg =keyboard.nextLine();
+      //VehicleRental.setRegNum(reg);
+      System.out.println();
+      System.out.println("Please enter Start Miles:");
+      beforeMiles = keyboard.nextInt();
+      //VehicleRental.setStartMileage(beforeMiles);
+      //VehicleRental.setEndMileage(endMiles);
+      System.out.println();
+      System.out.println("Please enter length of rental (number of days):");
+      numDays= keyboard.nextInt();
+      //VehicleRental.setNumDays(numDays);
+      System.out.println();
+      System.out.println("Please enter Daily Fee (£):");
+      dailyFee = keyboard.nextDouble();
+      //VehicleRental.setDailyCost(dailyFee);
+      System.out.println();
+      System.out.println("Please enter the height of the HGV: (m) ");
+      height = keyboard.nextDouble();
+      //HGVRental.setHeight(height);
+      System.out.println();
+      System.out.println("Please enter the Load Capacity of the HGV: (kg) ");
+      loadCapacity = keyboard.nextDouble();
+      //HGVRental.setLoadCapacity(loadCapacity);
+
+      HGVRental thisHGVOrder = new HGVRental("HGV", make, reg, beforeMiles, numDays,dailyFee);
+         //setDetails();
+         *//*System.out.println();
+         System.out.println("Please enter the height of the HGV: (m) ");
+         height = keyboard.nextDouble();
+         HGVRental.setHeight(height);
+         System.out.println();
+         System.out.println("Please enter the Load Capacity of the HGV: (kg) ");
+         loadCapacity = keyboard.nextDouble();
+         HGVRental.setLoadCapacity(loadCapacity);*//*
+         allRentals.add(thisHGVOrder);
+         rentalIDs.add(thisHGVOrder.getRentalID());
+
+         System.out.println(thisHGVOrder);
+
+         MainMenu.mainMenu();
+
+   }//end createHGVOrder*/
+   
+ /*  protected static void returnVehicle(int rentalNum){
+      int requiredNumber=rentalNum, position =0;
+      boolean found =false;
+
+      while ((!found)&& (position< VehicleRental.allRentals.size())){
+         if ((requiredNumber != VehicleRental.rentalIDs.get(position))){
+            position++;
+         }//end else
+         else {
+            found=true;
+         }//end else
+
+      }//end while
+
+      if (found){
+         System.out.println("Please enter end mileage of Rental id: "+ rentalNum);
+         endMiles= keyboard.nextInt();
+         VehicleRental.allRentals.get(position).setEndMileage(endMiles);
+         System.out.println(VehicleRental.allRentals.get(position));
+      }//end if
+      else{
+         System.out.println("Rental " + requiredNumber + " not found");
+      }//end else
+
+   MainMenu.mainMenu();
+
+   }//end returnVehicle
+   
+
+
+
+   // method to create CarOrder - called from main menu - Created by Patick 11/11/20
+   protected static void createCarOrder(){
+
+      //automate appending - need to work this out
+      //VehicleRental[] rentalsArray= {carRental1,carRental2, mpvRental1, hgvRental1};
+
+   }//end create CarOrder
+
+   //create MPVOrder()
+   protected static void createMPVOrder() {
+
+      //automate appending - need to work this out
+      //VehicleRental[] rentalsArray= {carRental1,carRental2, mpvRental1, hgvRental1};
+
+   }//end createMPVOrder()
+
+   public static void generateOrders() {
+      System.out.println("======================");
+      System.out.println("Running Customer Rental Class\nGenerating some orders from customer rental class");
+      //update discount list
+      System.out.println("Update discount list: ");
+      VehicleRental.autoUpdateDiscountList();
+
+      System.out.println("======================");
+
+      //create a couple of buses
+      System.out.println("Instating a couple of buses and saving them to an array");
+      Random r = new Random();
+
+      for(int i = 0; i < NUMBER_OF_BUSES; i++){
+         // setting values
+         MPVRental thisMPVOrder = new MPVRental("Bus", "Mini", "asd 343", 2000, 10, 400, 8);
+         thisMPVOrder.setSeats(2+r.nextInt(40));
+         int endMileage = 2000 + r.nextInt(1000);
+         thisMPVOrder.setEndMileage(endMileage);
+
+         // adding it to array
+         arrayOfBusOrders[i] = thisMPVOrder;
+      }
+      System.out.println("======================");
+
+      //create a couple of cars
+      System.out.println("Instating a couple of car orders and saving them to an array");
+
+      for(int i = 0; i < NUMBER_OF_CARS; i++){
+         // setting values
+         CarRental thisCarOrder = new CarRental("ASCR 123", 127000, 5, 4);
+         thisCarOrder.setSeats(2+r.nextInt(6));
+         int endMileage = 127000 + r.nextInt(1000);
+         thisCarOrder.setEndMileage(endMileage);
+
+         // adding it to array
+         arrayOfCarOrders[i] = thisCarOrder;
+         System.out.println(thisCarOrder);
+      }
+   } // generateOrders
+
+   public static void makeSummaryTable()
+   {
+      int widthOfSummary = 4;
+      int heightOfTable = arrayOfBusOrders.length+arrayOfCarOrders.length+1;
+      String[][] orderSummary = new String[heightOfTable][widthOfSummary];
+      // Header row
+      orderSummary[0][0] = "OrderID";
+      orderSummary[0][1] = "Type";
+      orderSummary[0][2] = "Total Miles Travelled";
+      orderSummary[0][3] = "Total Cost";
+
+      // Add bus orders
+      for (int row = 1; row <= arrayOfBusOrders.length; row++)
+      {
+         MPVRental thisMPVOrder = arrayOfBusOrders[row-1];
+         orderSummary[row][0] = String.valueOf(thisMPVOrder.getRentalID());
+         orderSummary[row][1] = "Bus";
+         orderSummary[row][2] = String.valueOf(thisMPVOrder.getTotalMileage());
+         orderSummary[row][3] = String.valueOf(thisMPVOrder.calculateTotalRentalCost());
+      }
+
+      //Add car orders
+      int orderNumber = 0;
+      int startRow = arrayOfBusOrders.length;
+      int endRow = startRow + arrayOfCarOrders.length;
+      for (int row = startRow+1; row <= endRow; row++)
+      {
+         CarRental thisCarOrder = arrayOfCarOrders[orderNumber];
+         orderNumber++;
+         orderSummary[row][0] = String.valueOf(thisCarOrder.getRentalID());
+         orderSummary[row][1] = "Car";
+         orderSummary[row][2] = String.valueOf(thisCarOrder.getTotalMileage());
+         orderSummary[row][3] = String.valueOf(thisCarOrder.calculateTotalRentalCost());
+      }
+
+      // display summary
+      System.out.println("=================");
+      System.out.println("Display Summary");
+      int totalMileage = 0;
+      double totalCost = 0;
+      // display header
+      for (int col = 0; col < widthOfSummary; col++)
+      {
+         System.out.print(orderSummary[0][col] + "\t");
+      }
+      System.out.println();
+      // display contents of summary table
+      for (int row = 1; row < heightOfTable; row++)
+      {
+         // calculate totals
+         totalMileage+=Integer.parseInt(orderSummary[row][2]);
+         totalCost+=Double.parseDouble(orderSummary[row][3]);
+         // display row
+         System.out.println(orderSummary[row][0] + "\t" +orderSummary[row][1] + "\t" +orderSummary[row][2] + "\t" +df.format(Double.parseDouble(orderSummary[row][3])));
+      }
+      // display totals
+      System.out.println("Total number of buses rented " + MPVRental.getNumberBusRentals());
+      System.out.println("Total number of cars rented " + arrayOfCarOrders.length);
+      System.out.println("Total mileage for all vehicles rented: " + df.format(totalMileage));
+      System.out.println("Total revenue from all vehicles rented: " + currencyFormat.format(totalCost));
+   }
+
+   public static void displayOrders(){
+
+      for(int i = 0; i < NUMBER_OF_BUSES; i++){
+
+         MPVRental thisMPVOrder = arrayOfBusOrders[i];
+         // adding it to array
+
+         // printing details
+         System.out.println("=================");
+         System.out.println("Details of bus order number " + thisMPVOrder.getRentalID());
+         System.out.println(thisMPVOrder);
+      }
+      System.out.println("Total number of buses rented " + MPVRental.getNumberBusRentals());
+      System.out.println("Total number of cars rented " + CarRental.getNumberCarRentals());
+   }
+
+*/
+//} // class
