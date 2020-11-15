@@ -1,14 +1,18 @@
-//package GroupProject;
+/*
+package GroupProject;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
+*/
 /**
  * Created by a1054125 on 29/10/2020
  * COMMENTS ABOUT PROGRAM HERE
- */
+ *//*
+
 public class Search {
 
-   public static void searchByType(VehicleRental[] rentalsArray)
+   public static void searchByType(ArrayList<VehicleRental> Rentals)
    {
 
       Scanner userInput = new Scanner(System.in);
@@ -32,29 +36,36 @@ public class Search {
          }
       }
 
-      System.out.println("These are all the rental orders on our system for your search type");
+      System.out.println("Full Rental Details (by type)");
+      System.out.println("=============================");
+      System.out.println("\nThese are all the rental orders on our system for your search type");
 
-      for (int i = 0; i < rentalsArray.length; i++)
+      for (int i = 0; i < Rentals.size(); i++)
       {
          System.out.println();
-         if (rentalType.equalsIgnoreCase(rentalsArray[i].getRentalType()))
+         if (rentalType.equals(Rentals.get(i).getRentalType()))
          {
-            System.out.println(rentalsArray[i]);
+            System.out.println(Rentals.get(i));
+            MainMenu.mainMenu();
          }
 
       }
    }
 
    //method for search for all rentals
-   public static void searchAllRentals(VehicleRental[] rentalsList) {
+   public static void searchAllRentals(ArrayList<VehicleRental> Rentals) {
 
-      System.out.println("These are all the rental orders in our system: ");
+      System.out.println("Full Rental Details");
+      System.out.println("===================");
+      System.out.println("\nThese are all the rental orders in our system: ");
 
-      for(int i = 0; i < rentalsList.length; i++) {
+      for(int i = 0; i < Rentals.size(); i++) {
          System.out.println();
-         System.out.println(rentalsList[i]);
+         System.out.println(Rentals.get(i));
+         MainMenu.mainMenu();
       }
       System.out.println();
    }
 
 }//class
+*/

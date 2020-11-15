@@ -1,5 +1,8 @@
+package GroupProject;
+
 import java.text.DecimalFormat;
 import java.util.Scanner;
+
 
 /**
  * Created by A.Dungca on 28/10/2020
@@ -13,20 +16,21 @@ public class CarRental extends VehicleRental {
    DecimalFormat df = new DecimalFormat("0.00");
 
    //variables unique to CarRental class
-   private static int countCarsRented=0;
+   protected static int countCarsRented=0;
    private int seats,doors;
 
    //default constructor
    public CarRental(){
+      countCarsRented++;
    }
 
    //alternative constructor1
-   public CarRental(String carMake,String carReg,int carMilesBefore,int lengthDays,double dailyFee,int carSeats,int carDoors){
-      super(carMake,carReg,carMilesBefore,lengthDays,dailyFee);
+   public CarRental(String itsType,String carMake,String carReg,int carMilesBefore,int lengthDays,double dailyFee,int carSeats,int carDoors){
+      super(itsType,carMake,carReg,carMilesBefore,lengthDays,dailyFee);
       seats=carSeats;
       doors=carDoors;
       countCarsRented++;
-      String carType = "Car";
+      //itsType="Car";
    }
 
    //alternative constructor2
@@ -35,6 +39,9 @@ public class CarRental extends VehicleRental {
       seats=carSeats;
       doors=0;
       String carType = "Car";
+
+      //Patrick Added this 15/11/20 - although I dont think this constructor is used
+      countCarsRented++;
    }
 
    protected int getSeats() {
@@ -68,6 +75,40 @@ public class CarRental extends VehicleRental {
    //completing abstract method getVehicleType()
    protected String getVehicleType(){
       return ("This is a car rental");
+   }
+
+   //comment by Patrick 14/11/20 - Should this be added to test class? We have always created objects from Test class.
+   public static void makeCarOrder(){
+      String type,make,reg;
+      int milesBefore,days,seats,doors;
+      double fee;
+      System.out.println("\nCREATING CAR RENTAL\n====================");
+      type="Car";
+      System.out.print("Make: ");
+      make=VehicleRental.keyboard.nextLine();
+      VehicleRental.keyboard.nextLine();
+      System.out.print("Reg: ");
+      reg=VehicleRental.keyboard.nextLine();
+      System.out.print("Miles before:");
+      milesBefore=VehicleRental.keyboard.nextInt();
+      System.out.print("Days rented for: ");
+      days=VehicleRental.keyboard.nextInt();
+      System.out.print("Daily fee (£): ");
+      fee=VehicleRental.keyboard.nextDouble();
+      System.out.print("How many seats in this car? ");
+      seats=VehicleRental.keyboard.nextInt();
+      System.out.print("How many doors in this car? ");
+      doors=VehicleRental.keyboard.nextInt();
+
+      //creating object with user input
+      CarRental car1=new CarRental(type,make,reg,milesBefore,days,fee,seats,doors);
+      //adding created object to arraylist
+      Rentals.add(car1);
+      RentalsID.add(car1.getRentalID());
+      System.out.println("CAR RENTAL CREATED\n====================");
+
+      TestRental_Aldrian.mainMenu();
+
    }
 
 }//class

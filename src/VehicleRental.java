@@ -1,5 +1,7 @@
+package GroupProject;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
@@ -16,11 +18,15 @@ abstract public class VehicleRental {
    //import Decimal Format class
    DecimalFormat df = new DecimalFormat("0.00");
 
+   //arraylist to store all vehicle rentals
+   public static ArrayList<VehicleRental> Rentals=new ArrayList<>();
+   public static ArrayList<Integer> RentalsID=new ArrayList<>();
+
    //variables required for constructor methods to create an object of the VehicleRental class
    private String make, regNum,rentalType;
    private int startMileage, rentalID, numDays;
    private double dailyCost;
-   private static int countVehiclesRented=0, uniqueNum = 10001;
+   protected static int countVehiclesRented=0, uniqueNum = 10001;
    final static int DISCOUNT_ITEMS = 10;
    static int [] percentageDiscount = new int[DISCOUNT_ITEMS];
    int discount;
@@ -30,9 +36,7 @@ abstract public class VehicleRental {
    private int endMileage, totalMileage;
    private final double EXTRA_FEE_PER_MILE=0.2;
    private final int DAILY_MILES_ALLOWED=150;
-   private double totalRevenue,averageDailyMiles, totalRentalCost;
-
-
+   protected static double totalRevenue,averageDailyMiles, totalRentalCost;
 
 
    //default constructor
@@ -41,27 +45,9 @@ abstract public class VehicleRental {
       uniqueNum++;
       countVehiclesRented++;
       discount= randomSelection();
-      // ali editted
-      // endMileage = startMileage;
    }//end default constructor method
 
    //alternative constructor method with 5 constructor variables passed as parameters
-   public VehicleRental(String itsMake, String itsRegNum, int MilesBefore, int lengthDays, double dailyFee){
-      make=itsMake;
-      regNum=itsRegNum;
-      startMileage=MilesBefore;
-      rentalID=uniqueNum;
-      numDays=lengthDays;
-      dailyCost=dailyFee;
-      uniqueNum++;
-      countVehiclesRented++;
-      discount = randomSelection();
-      // ali editted
-      endMileage = startMileage;
-   }//end alternative constructor
-
-
-   //alternative constructor method with 6 constructor variables passed as parameters
    public VehicleRental(String itsType,String itsMake, String itsRegNum, int MilesBefore, int lengthDays, double dailyFee){
       make=itsMake;
       regNum=itsRegNum;
@@ -207,15 +193,12 @@ abstract public class VehicleRental {
       totalRentalCost= (dailyCost*numDays)+calculateAdditionalFee();
       totalRentalCost=totalRentalCost-((totalRentalCost/100)*discount);
       return totalRentalCost;
-   }//end calculatetotalRentalCost()
+   }//end calculateTotalRentalCost()
 
-/*   //method to populate array with int values representing discount
-   protected static void updateDiscountList(){
-      for (int index=0; index<DISCOUNT_ITEMS; index++){
-         System.out.println("Enter the value Discount (%): "+ (index+1)+" of "+ DISCOUNT_ITEMS);
-         percentageDiscount[index]= keyboard.nextInt();
-      }//end for
-   }// end updateDiscountList()*/
+   //get number of Vehicle rentals
+   protected static int getNumberVehicleRentals(){
+      return countVehiclesRented;
+   }//end getNumberHGVRentals
 
    //method to populate array with int values representing discount
    protected static void autoUpdateDiscountList(){
@@ -310,11 +293,43 @@ abstract public class VehicleRental {
       message=message+"Discount Percentage applied (selected at random): " + discount +"%\n";
       if(calculateTotalRentalCost()<=0){
          message=message+"Total Cost (after "+discount+" % discount applied): to be calculated on vehicle return\n";
+         totalRevenue = totalRevenue+totalRentalCost;
       }//end if
       else{
          message=message+"Total Cost (after "+discount+" % discount applied): £" + df.format(calculateTotalRentalCost());
+         totalRevenue = totalRevenue+totalRentalCost;
       }//end else
       return message;
    }//end toString method
+
+   protected static void returnVehicle(int rentalNum){
+      int endMiles;
+      int requiredNumber=rentalNum, position =0;
+      boolean found =false;
+
+      while ((!found)&& (position< VehicleRental.Rentals.size())){
+         if ((requiredNumber != VehicleRental.RentalsID.get(position))){
+            position++;
+         }//end else
+         else {
+            found=true;
+         }//end else
+
+      }//end while
+
+      if (found){
+         System.out.println("Please enter end mileage of Rental id: "+ requiredNumber);
+         endMiles= keyboard.nextInt();
+         Rentals.get(position).setEndMileage(endMiles);
+         //System.out.println("Miles set for rental: "+rentalNum);
+         System.out.println(Rentals.get(position));
+      }//end if
+      else{
+         System.out.println("Rental " + requiredNumber + " not found");
+      }//end else
+
+      TestRental_Aldrian.mainMenu();
+
+   }//end returnVehicle
 
 }//class

@@ -1,9 +1,5 @@
-/**
- * Created by Ali Dore on 29/10/2020
- * COMMENTS ABOUT PROGRAM HERE
- */
-import java.text.DecimalFormat;
-import java.util.Scanner;
+package GroupProject;
+
 
 /**
  * Created by Ali Dore on 29/10/2020
@@ -12,7 +8,7 @@ import java.util.Scanner;
 public class MPVRental extends VehicleRental {
 
    //variables unique to BusRental class
-   private static int countBusesRented=0;
+   protected static int countBusesRented=0;
    private int seats;
    // I tried to give the buses a different starting number but it didn't work
    private static int uniqueNum = 20001;
@@ -35,6 +31,9 @@ public class MPVRental extends VehicleRental {
    public MPVRental(String MPVtype, String busReg,int busMilesBefore,int lengthDays,int busSeats){
       super(busReg,busMilesBefore,lengthDays);
       seats=busSeats;
+
+      //Patrick Added  - although I dont think this constructer is ever used
+      countBusesRented++;
    }
 
    protected int getSeats() {

@@ -43,7 +43,7 @@ public class TestRental {
 
       System.out.println();
 
-      CarRental testCar = new("Car");
+      CarRental testCar = new CarRental();
 
       //create new carRental
       System.out.println("Create carRental1 object");
