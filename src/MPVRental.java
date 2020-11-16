@@ -1,4 +1,4 @@
-package GroupProject;
+//package GroupProject;
 
 
 /**
@@ -59,5 +59,65 @@ public class MPVRental extends VehicleRental {
    protected String getVehicleType(){
       return ("This is a bus rental");
    }
+
+
+
+
+   public static void makeBusOrder(){
+      String type,make,reg;
+      int milesBefore,days,seats;
+      double fee;
+      System.out.println("\nCREATING BUS RENTAL\n====================");
+      type="MPV";
+      System.out.print("Make: ");
+      make=VehicleRental.keyboard.nextLine();
+      VehicleRental.keyboard.nextLine();
+      System.out.print("Reg: ");
+      reg=VehicleRental.keyboard.nextLine();
+      System.out.print("Miles before:");
+      milesBefore=VehicleRental.keyboard.nextInt();
+      System.out.print("Days rented for: ");
+      days=VehicleRental.keyboard.nextInt();
+      System.out.print("Daily fee (£): ");
+      fee=VehicleRental.keyboard.nextDouble();
+      System.out.print("How many seats in this bus? ");
+      seats=VehicleRental.keyboard.nextInt();
+      //creating object with user input
+      MPVRental thisBus=new MPVRental(type,make,reg,milesBefore,days,fee,seats);
+      //adding created object to arraylist
+      Rentals.add(thisBus);
+      // Write file using dateID
+      FileWriter.write(thisBus);
+      RentalsID.add(thisBus.getRentalID());
+
+      System.out.println("BUS RENTAL CREATED\n====================");
+      System.out.println(thisBus);
+
+      TestRental_Aldrian.mainMenu();
+   }
+
+   public static void testBusOrder(){
+      String type,make,reg;
+      int milesBefore,days,seats;
+      double fee;
+      System.out.println("\nCREATING BUS RENTAL\n====================");
+      MPVRental thisBus=new MPVRental("MPV","Lada","MNV 153Y",1000,5,75,12);
+
+      //MPVRental bus1=new MPVRental(type,make,reg,milesBefore,days,fee,seats);
+      //adding created object to arraylist
+      Rentals.add(thisBus);
+      // Write file using dateID
+      FileWriter.write(thisBus);
+      RentalsID.add(thisBus.getRentalID());
+
+      System.out.println("BUS RENTAL CREATED\n====================");
+      System.out.println(thisBus);
+
+      TestRental_Aldrian.mainMenu();
+   }
+
+
+
+
 
 }//class

@@ -1,3 +1,4 @@
+/*
 import GroupProject.CarRental;
 import GroupProject.MPVRental;
 import GroupProject.VehicleRental;
@@ -5,10 +6,12 @@ import GroupProject.VehicleRental;
 import java.text.DecimalFormat;
 import java.util.Random;
 
+*/
 /**
  * Created by Ali Dore on 29/10/2020
  * COMMENTS ABOUT PROGRAM HERE
- */
+ *//*
+
 public class CustomerRental
 {
    // creating arrays to store orders in
@@ -143,4 +146,5 @@ public class CustomerRental
       System.out.println("Total number of cars rented " + CarRental.getNumberCarRentals());
    }
 
-} // class
+*/
+//} // class

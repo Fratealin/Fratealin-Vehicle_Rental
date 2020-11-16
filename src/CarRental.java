@@ -1,4 +1,5 @@
-package GroupProject;
+//package GroupProject;
+import com.sun.tools.javac.Main;
 
 import java.text.DecimalFormat;
 import java.util.Scanner;
@@ -16,12 +17,11 @@ public class CarRental extends VehicleRental {
    DecimalFormat df = new DecimalFormat("0.00");
 
    //variables unique to CarRental class
-   protected static int countCarsRented=0;
+   private static int countCarsRented=0;
    private int seats,doors;
 
    //default constructor
    public CarRental(){
-      countCarsRented++;
    }
 
    //alternative constructor1
@@ -39,9 +39,6 @@ public class CarRental extends VehicleRental {
       seats=carSeats;
       doors=0;
       String carType = "Car";
-
-      //Patrick Added this 15/11/20 - although I dont think this constructor is used
-      countCarsRented++;
    }
 
    protected int getSeats() {
@@ -77,7 +74,6 @@ public class CarRental extends VehicleRental {
       return ("This is a car rental");
    }
 
-   //comment by Patrick 14/11/20 - Should this be added to test class? We have always created objects from Test class.
    public static void makeCarOrder(){
       String type,make,reg;
       int milesBefore,days,seats,doors;
@@ -104,6 +100,9 @@ public class CarRental extends VehicleRental {
       CarRental car1=new CarRental(type,make,reg,milesBefore,days,fee,seats,doors);
       //adding created object to arraylist
       Rentals.add(car1);
+      // Write file using dateID
+      FileWriter.write(car1);
+
       RentalsID.add(car1.getRentalID());
       System.out.println("CAR RENTAL CREATED\n====================");
 

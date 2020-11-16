@@ -36,36 +36,32 @@ public class Search {
          }
       }
 
-      System.out.println("Full Rental Details (by type)");
-      System.out.println("=============================");
       System.out.println("\nThese are all the rental orders on our system for your search type");
 
-      for (int i = 0; i < Rentals.size(); i++)
-      {
+      for (int i = 0; i < Rentals.size(); i++) {
          System.out.println();
          if (rentalType.equals(Rentals.get(i).getRentalType()))
          {
             System.out.println(Rentals.get(i));
-            MainMenu.mainMenu();
+
          }
 
       }
+      MainMenu.mainMenu();
    }
 
    //method for search for all rentals
    public static void searchAllRentals(ArrayList<VehicleRental> Rentals) {
 
-      System.out.println("Full Rental Details");
-      System.out.println("===================");
       System.out.println("\nThese are all the rental orders in our system: ");
 
       for(int i = 0; i < Rentals.size(); i++) {
          System.out.println();
          System.out.println(Rentals.get(i));
-         MainMenu.mainMenu();
+
       }
       System.out.println();
+      MainMenu.mainMenu();
    }
 
-}//class
-*/
+}//class*/

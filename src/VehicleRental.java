@@ -1,10 +1,8 @@
-package GroupProject;
+//package GroupProject;
 
 import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Random;
-import java.util.Scanner;
+import java.text.SimpleDateFormat;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -17,6 +15,10 @@ abstract public class VehicleRental {
    static Scanner keyboard = new Scanner(System.in);
    //import Decimal Format class
    DecimalFormat df = new DecimalFormat("0.00");
+   static SimpleDateFormat formatter = new SimpleDateFormat("ddMMyyyy_HHmmss");
+   static SimpleDateFormat dateFormatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+
+
 
    //arraylist to store all vehicle rentals
    public static ArrayList<VehicleRental> Rentals=new ArrayList<>();
@@ -24,24 +26,32 @@ abstract public class VehicleRental {
 
    //variables required for constructor methods to create an object of the VehicleRental class
    private String make, regNum,rentalType;
-   private int startMileage, rentalID, numDays;
+   private int startMileage, numDays;
+   int rentalID;
+   String dateID, dateOfOrder;
    private double dailyCost;
-   protected static int countVehiclesRented=0, uniqueNum = 10001;
+   private static int uniqueNum = 10001;
    final static int DISCOUNT_ITEMS = 10;
    static int [] percentageDiscount = new int[DISCOUNT_ITEMS];
    int discount;
+   protected static int  countVehiclesRented=0;
 
 
    //variables required for other methods/calculations within the VehicleRental class
    private int endMileage, totalMileage;
    private final double EXTRA_FEE_PER_MILE=0.2;
    private final int DAILY_MILES_ALLOWED=150;
-   protected static double totalRevenue,averageDailyMiles, totalRentalCost;
+   private double averageDailyMiles, totalRentalCost;
+   protected static double totalRevenue;
 
 
    //default constructor
    public VehicleRental(){
       rentalID=uniqueNum;
+      Date date = new Date();
+      dateID=formatter.format(date);
+      dateOfOrder = dateFormatter.format(date);
+
       uniqueNum++;
       countVehiclesRented++;
       discount= randomSelection();
@@ -53,6 +63,14 @@ abstract public class VehicleRental {
       regNum=itsRegNum;
       startMileage=MilesBefore;
       rentalID=uniqueNum;
+      Date date = new Date();
+      dateID=formatter.format(date);
+      dateOfOrder = dateFormatter.format(date);
+
+
+
+
+
       numDays=lengthDays;
       dailyCost=dailyFee;
       uniqueNum++;
@@ -70,6 +88,10 @@ abstract public class VehicleRental {
       regNum=itsRegNum;
       startMileage=MilesBefore;
       rentalID=uniqueNum;
+      Date date = new Date();
+      dateID=formatter.format(date);
+      dateOfOrder = dateFormatter.format(date);
+
       numDays=lengthDays;
       dailyCost=-999;
       uniqueNum++;
@@ -83,6 +105,10 @@ abstract public class VehicleRental {
       regNum="***";
       startMileage=MilesBefore;
       rentalID=uniqueNum;
+      Date date = new Date();
+      dateID=formatter.format(date);
+      dateOfOrder = dateFormatter.format(date);
+
       numDays=lengthDays;
       dailyCost=-999;
       uniqueNum++;
@@ -96,6 +122,9 @@ abstract public class VehicleRental {
       regNum=itsRegNum;
       startMileage=MilesBefore;
       rentalID=uniqueNum;
+      Date date = new Date();
+      dateID=formatter.format(date);
+      dateOfOrder = dateFormatter.format(date);
       numDays=-999;
       dailyCost=-dailyFee;
       uniqueNum++;
@@ -103,9 +132,20 @@ abstract public class VehicleRental {
       discount= randomSelection();
    }//end alternative constructor
 
+   //alternative constructor
+   public VehicleRental(String make, String reg, int beforeMiles, int numDays, double dailyFee) {
+   }//end alternative constructor
+
+
+
    //method to getRentalID
    protected int getRentalID() {
       return rentalID;
+   }//end getRentalID
+
+   //method to getRentalID
+   protected String getdateID() {
+      return dateID;
    }//end getRentalID
 
    //method to getTotalMileage
@@ -193,12 +233,7 @@ abstract public class VehicleRental {
       totalRentalCost= (dailyCost*numDays)+calculateAdditionalFee();
       totalRentalCost=totalRentalCost-((totalRentalCost/100)*discount);
       return totalRentalCost;
-   }//end calculateTotalRentalCost()
-
-   //get number of Vehicle rentals
-   protected static int getNumberVehicleRentals(){
-      return countVehiclesRented;
-   }//end getNumberHGVRentals
+   }//end calculatetotalRentalCost()
 
    //method to populate array with int values representing discount
    protected static void autoUpdateDiscountList(){
@@ -234,7 +269,8 @@ abstract public class VehicleRental {
    //toString Method
    public String toString() {
       String message;
-      message= "Rental ID: " + rentalID + "\n"+
+      message = String.format("Date of order: %s\n", dateOfOrder);
+      message+= "Rental ID: " + rentalID + "\n"+
             "Vehicle Make: " + make + "\n" +
             "Registration Number: " + regNum + "\n" +
             "Rental Duration (Days): " + numDays + "\n";
@@ -293,11 +329,9 @@ abstract public class VehicleRental {
       message=message+"Discount Percentage applied (selected at random): " + discount +"%\n";
       if(calculateTotalRentalCost()<=0){
          message=message+"Total Cost (after "+discount+" % discount applied): to be calculated on vehicle return\n";
-         totalRevenue = totalRevenue+totalRentalCost;
       }//end if
       else{
          message=message+"Total Cost (after "+discount+" % discount applied): £" + df.format(calculateTotalRentalCost());
-         totalRevenue = totalRevenue+totalRentalCost;
       }//end else
       return message;
    }//end toString method

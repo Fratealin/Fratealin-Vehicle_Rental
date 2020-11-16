@@ -1,4 +1,4 @@
-package GroupProject;
+//package GroupProject;
 import java.text.DecimalFormat;
 import java.util.Scanner;
 
@@ -76,7 +76,7 @@ public class HGVRental extends VehicleRental {
          message=message+ "The maximum height of the HGV is: "+df.format(height)+" metres "+"\n";
       }//end else
       if (loadCapacity==-999.9){
-         message = message+ "Load capacity of the HGV is: Not declared \n";
+         message = message+ "Load capacity of the HGV is: Not declared\n ";
       }//end if
       else{
          message=message+ "The maximum working load capacity of the HGV is: "+df.format(loadCapacity)+"kg"+"\n";
@@ -85,7 +85,7 @@ public class HGVRental extends VehicleRental {
    }//end toString
 
    //get number of HGV rentals
-   protected static int getNumberHGVRentals(){
+   protected static int getNumberCarRentals(){
       return countHGVRented;
    }//end getNumberHGVRentals
 
@@ -94,6 +94,54 @@ public class HGVRental extends VehicleRental {
       return ("HGV");
    }//end abstract method - getVehicleType
 
+   //method called from main menu to create HGV Order - created by Patrick 11/11/20
+ /*  public static void createHGVOrder(){
 
+      String make, reg, Type;
+      int beforeMiles, numDays;
+      double dailyFee;
+
+      double height, loadCapacity;
+
+      System.out.println("Please enter make:");
+      make = keyboard.nextLine();
+      //VehicleRental.setMake(make);
+      keyboard.nextLine();
+      System.out.println();
+      System.out.println("Please enter Registration number:");
+      reg =keyboard.nextLine();
+      //VehicleRental.setRegNum(reg);
+      System.out.println();
+      System.out.println("Please enter Start Miles:");
+      beforeMiles = keyboard.nextInt();
+      //VehicleRental.setStartMileage(beforeMiles);
+      //VehicleRental.setEndMileage(endMiles);
+      System.out.println();
+      System.out.println("Please enter length of rental (number of days):");
+      numDays= keyboard.nextInt();
+      //VehicleRental.setNumDays(numDays);
+      System.out.println();
+      String type = "HGV";
+      System.out.println("Please enter Daily Fee (Â£):");
+      dailyFee = keyboard.nextDouble();
+      //VehicleRental.setDailyCost(dailyFee);
+      System.out.println();
+      System.out.println("Please enter the height of the HGV: (m) ");
+      height = keyboard.nextDouble();
+      //HGVRental.setHeight(height);
+      System.out.println();
+      System.out.println("Please enter the Load Capacity of the HGV: (kg) ");
+      loadCapacity = keyboard.nextDouble();
+      //HGVRental.setLoadCapacity(loadCapacity);
+
+      HGVRental thisHGVOrder = new HGVRental(type, make, reg, beforeMiles, numDays,dailyFee);
+      Rentals.add(thisHGVOrder);
+      RentalsID.add(thisHGVOrder.getRentalID());
+
+      System.out.println(thisHGVOrder);
+
+      MainMenu.mainMenu();
+
+   }//end createHGVOrder*/
 
 }//class
