@@ -93,6 +93,7 @@ public class MPVRental extends VehicleRental {
 
       System.out.println("BUS RENTAL CREATED\n====================");
       System.out.println(thisBus);
+      Pause.pause(3);
 
       TestRental_Aldrian.mainMenu();
    }

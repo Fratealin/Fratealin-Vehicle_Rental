@@ -55,6 +55,7 @@ public class TestRental_Aldrian {
       System.out.println("HGV RENTAL CREATED\n====================");
 
       System.out.println(thisHGVOrder);
+      Pause.pause(3);
 
       mainMenu();
 
@@ -184,6 +185,7 @@ public class TestRental_Aldrian {
             System.out.println("Summary of all Vehicle rental Orders: " );// Ali - this is where we can call your Summary table;
             SummaryTable ourTable = new SummaryTable();
             ourTable.displayTable();
+            Pause.pause(3);
 
             mainMenu();
             break;
@@ -196,6 +198,7 @@ public class TestRental_Aldrian {
             break;
          case 9:
             FileWriter.getAllReceipts();
+            Pause.pause(3);
             mainMenu();
             break;
          case 0:
