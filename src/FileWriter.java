@@ -35,14 +35,15 @@ public class FileWriter
    {
       Scanner keyboard = new Scanner(System.in);
 
-      System.out.println("Historical Orders on our system");
+      System.out.println("\nHistorical Orders on our system\n===========================\n");
       File theDir = new File(filePath);
       if (!theDir.exists()){
          System.out.println("No Orders");
       }
 
 
-      else{
+      else
+      {
          System.out.println("Enter number of order you'd like to see");
          String[] orders;
          // Creates a new File instance by converting the given order file string
@@ -60,8 +61,31 @@ public class FileWriter
             System.out.println(i + "\t" + pathname);
             i++;
          }
-         int index = keyboard.nextInt();
-         String wantedFilename = orders[index];
+
+         int index;
+         String wantedFilename;
+         do
+         {
+            try
+            {
+
+               index = ErrorHandler.getIntegerInput();
+
+               wantedFilename = orders[index];
+
+            } catch (ArrayIndexOutOfBoundsException e)
+            {
+               System.out.println(e.getMessage());
+               System.out.println("Please try again");
+               VehicleRental.keyboard.next(); // reset scanner otherwise enters infinite loop.
+               continue;
+
+            }
+            break; // need this to leave do loop if try successful
+         } while (true);
+
+         wantedFilename = orders[3];
+
          fileName = filePath + "/" + wantedFilename;
          System.out.println(read());
       }
@@ -72,7 +96,7 @@ public class FileWriter
       createFolder();
 
       // TODO: You will probably have to change the / to \ to work on windows
-      fileName = String.format("%s/%s_receipt_%s.txt", filePath, vehicleRental.getRentalType(), vehicleRental.getdateID());
+      fileName = String.format("%s/%s_receipt_%s_%s.txt", filePath, vehicleRental.getRentalType(), vehicleRental.getDateID(), vehicleRental.getRentalID());
       //fileName = "receipt_" + vehicleRental.getdateID() + ".txt";
       create();
 

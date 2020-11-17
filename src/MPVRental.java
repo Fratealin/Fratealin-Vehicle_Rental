@@ -75,7 +75,8 @@ public class MPVRental extends VehicleRental {
       System.out.print("Reg: ");
       reg=VehicleRental.keyboard.nextLine();
       System.out.print("Miles before:");
-      milesBefore=VehicleRental.keyboard.nextInt();
+      // TODO: Changed this
+      milesBefore=ErrorHandler.getIntegerInput();
       System.out.print("Days rented for: ");
       days=VehicleRental.keyboard.nextInt();
       System.out.print("Daily fee (£): ");

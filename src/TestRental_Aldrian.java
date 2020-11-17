@@ -49,13 +49,9 @@ public class TestRental_Aldrian {
       VehicleRental.Rentals.add(thisHGVOrder);
       VehicleRental.RentalsID.add(thisHGVOrder.getRentalID());
 
-
-      //adding created object to arraylist
-      VehicleRental.Rentals.add(thisHGVOrder);
       // Write file using dateID
       FileWriter.write(thisHGVOrder);
 
-      VehicleRental.RentalsID.add(thisHGVOrder.getRentalID());
       System.out.println("HGV RENTAL CREATED\n====================");
 
       System.out.println(thisHGVOrder);
@@ -78,9 +74,9 @@ public class TestRental_Aldrian {
       System.out.println("1. Make a single Vehicle rental order \n2. Make a multi-Vehicle (fleet) Vehicle Rental order  \n3. Search " +
             "existing orders \n4. Log details of a returned vehicle \n" +
             "5. Update Discount List \n6. Display number of rental orders \n7. Print Summary list of all rentals " +
-            "\n8. Display Total Revenue\n0. Quit?");
+            "\n8. Display Total Revenue\n9. Access rental receipts on our database\n0. Quit?");
 
-      choice = keyboard.nextInt();
+      choice = ErrorHandler.getIntegerInput();
 
       switch (choice) {
          case 1:
@@ -186,6 +182,9 @@ public class TestRental_Aldrian {
             System.out.println("Summary of Rentals");
             System.out.println("==================");
             System.out.println("Summary of all Vehicle rental Orders: " );// Ali - this is where we can call your Summary table;
+            SummaryTable ourTable = new SummaryTable();
+            ourTable.displayTable();
+
             mainMenu();
             break;
          case 8:
@@ -196,8 +195,18 @@ public class TestRental_Aldrian {
             mainMenu();
             break;
          case 9:
+            FileWriter.getAllReceipts();
+            mainMenu();
+            break;
+         case 0:
             System.out.println("Quitting program.\nThank you.\nGoodbye");
             break;
+         default:
+            // added for the case there is no match
+            // other wise it just ends the program
+            // this dispalys the menu again. which is not ideal. But I've no ideas
+            mainMenu();
+
       }//end switch
 
    }//end main menu()
@@ -264,10 +273,6 @@ public class TestRental_Aldrian {
 
 
    public static void main(String[] args) {
-      FileWriter.getAllReceipts();
-
-
-
 
       //creating discount rates
       System.out.println();

@@ -143,10 +143,15 @@ abstract public class VehicleRental {
       return rentalID;
    }//end getRentalID
 
-   //method to getRentalID
-   protected String getdateID() {
+   //method to getDateID
+   protected String getDateID() {
       return dateID;
-   }//end getRentalID
+   }//end getDateID
+
+   //method to getDateID
+   protected String getDateOfOrderID() {
+      return dateOfOrder;
+   }//end getDateID
 
    //method to getTotalMileage
    // added by Ali. I needed this for the bus rental
@@ -355,8 +360,9 @@ abstract public class VehicleRental {
          System.out.println("Please enter end mileage of Rental id: "+ requiredNumber);
          endMiles= keyboard.nextInt();
          Rentals.get(position).setEndMileage(endMiles);
+         //total rental cost added to total revenue
+         totalRevenue=totalRevenue+Rentals.get(position).calculateTotalRentalCost();
          //System.out.println("Miles set for rental: "+rentalNum);
-         System.out.println(Rentals.get(position));
       }//end if
       else{
          System.out.println("Rental " + requiredNumber + " not found");

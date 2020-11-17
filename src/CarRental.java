@@ -86,9 +86,9 @@ public class CarRental extends VehicleRental {
       System.out.print("Reg: ");
       reg=VehicleRental.keyboard.nextLine();
       System.out.print("Miles before:");
-      milesBefore=VehicleRental.keyboard.nextInt();
+      milesBefore=ErrorHandler.getIntegerInput();
       System.out.print("Days rented for: ");
-      days=VehicleRental.keyboard.nextInt();
+      days=ErrorHandler.getIntegerInput();
       System.out.print("Daily fee (£): ");
       fee=VehicleRental.keyboard.nextDouble();
       System.out.print("How many seats in this car? ");
