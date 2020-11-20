@@ -84,7 +84,7 @@ public class FileWriter
             break; // need this to leave do loop if try successful
          } while (true);
 
-         wantedFilename = orders[3];
+         //wantedFilename = orders[3];
 
          fileName = filePath + "/" + wantedFilename;
          System.out.println(read());

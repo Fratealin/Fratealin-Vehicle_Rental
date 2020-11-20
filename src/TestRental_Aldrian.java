@@ -277,12 +277,16 @@ public class TestRental_Aldrian {
 
    public static void main(String[] args) {
 
+      Pause.scrollPrint("Vehicle Rentals");
+
       //creating discount rates
       System.out.println();
       System.out.println("Vehicle Rentals");
+
+      Pause.scrollPrint("===============");
       System.out.println("===============");
       System.out.println();
-      System.out.println("Before you begin, please press enter update the systems discount list\n ");
+      Pause.scrollPrint("Before you begin, please press enter update the systems discount list\n ");
       keyboard.nextLine();
       VehicleRental.autoUpdateDiscountList();
 
