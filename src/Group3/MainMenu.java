@@ -114,8 +114,15 @@ public class MainMenu {
             System.out.println();
             System.out.println("Return a Vehicle");
             System.out.println("================");
+
+            // TODO: Ali did this so the user knows what their options are
+            for (VehicleRental thisOrder : VehicleRental.Rentals) {
+               System.out.println(thisOrder.getRentalType() + " " + thisOrder.getRentalID() + " " + thisOrder.dateOfOrder);
+            }
+
             System.out.println("Please enter the Vehicle rental ID you wish to return:");
             id = ErrorHandler.getIntegerInput();
+
             VehicleRental.returnVehicle(id);
             break;
          case 5:

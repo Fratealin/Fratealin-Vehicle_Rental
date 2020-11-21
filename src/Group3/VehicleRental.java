@@ -147,7 +147,7 @@ abstract public class VehicleRental {
       return dateID;
    }//end getDateID
 
-   //method to getDateID
+   //method to getDateOfOrderID
    protected String getDateOfOrderID() {
       return dateOfOrder;
    }//end getDateID
@@ -164,7 +164,7 @@ abstract public class VehicleRental {
 
    //method for setMake()
    protected void setMake(String vehicleMake) {
-      vehicleMake = make;
+      make = vehicleMake;
    }//end setMake
 
    //method to getMake
@@ -290,10 +290,10 @@ abstract public class VehicleRental {
             "Registration Number: " + regNum + "\n" +
             "Rental Duration (Days): " + numDays + "\n";
       if(dailyCost==0){
-         message=message+" Daily Cost: (not provided)\n";
+         message=message+"\n Daily Cost: (not provided)\n";
       }//end if
       else{
-         message=message+" Daily Cost: £" + df.format(dailyCost) + "\n";
+         message=message+"\n Daily Cost: £" + df.format(dailyCost) + "\n";
       }//end else
       if(dailyCost*numDays<0){
          message = message+ "Total Cost (before any additional fees): unable to calculate. More information needed\n";
@@ -304,7 +304,7 @@ abstract public class VehicleRental {
                "Start Mileage: " + startMileage + " miles\n";
       }//end else
       if(endMileage==0) {
-         message=message+"End Mileage: to be recorded on vehicle return\n";
+         message=message+"\nEnd Mileage: to be recorded on vehicle return\n";
       }//end if
       else {
          message=message+"End Mileage: "+endMileage+" miles\n";
@@ -343,10 +343,10 @@ abstract public class VehicleRental {
       }//end else
       message=message+"Discount Percentage applied (selected at random): " + discount +"%\n";
       if(calculateTotalRentalCost()<=0){
-         message=message+"Total Cost (after "+discount+" % discount applied): to be calculated on vehicle return\n";
+         message=message+"\nTotal Cost (after "+discount+" % discount applied): to be calculated on vehicle return\n";
       }//end if
       else{
-         message=message+"Total Cost (after "+discount+" % discount applied): £" + df.format(calculateTotalRentalCost());
+         message=message+"\nTotal Cost (after "+discount+" % discount applied): £" + df.format(calculateTotalRentalCost());
       }//end else
       return message;
    }//end toString method

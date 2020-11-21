@@ -8,10 +8,11 @@ import java.util.Scanner;
 /**
  * Created by Ali Dore on 16/11/2020. Amended by A.Dungca 17/11
  * Reading and writing text file, gets a list of orders created
+ * Checks if a folder "order_receipts" exists and create it if not
  */
 public class FileManager {
    static String fileName;
-   static String filePath = "order_receipts";
+   final static String FILE_PATH = "order_receipts";
 
    private static void create() {
       try {
@@ -24,17 +25,15 @@ public class FileManager {
    }
 
    public static void createFolder() {
-      File theDir = new File(filePath);
+      File theDir = new File(FILE_PATH);
       if (!theDir.exists()) {
          theDir.mkdirs();
       }
    }
 
    public static void getAllReceipts() {
-      Scanner keyboard = new Scanner(System.in);
-
       System.out.println("\nHistorical Orders on our system\n===========================\n");
-      File theDir = new File(filePath);
+      File theDir = new File(FILE_PATH);
       if (!theDir.exists()) {
          System.out.println("No Orders");
       } else {
@@ -42,12 +41,14 @@ public class FileManager {
          String[] orders;
          // Creates a new File instance by converting the given order file string
          // into an abstract pathname
-         File f = new File(filePath);
+         File f = new File(FILE_PATH);
 
          // Populates the array with names of files and directories
          orders = f.list();
 
          // For each pathname in the pathnames array
+         // Used a for-each loop, or enhanced for loop as extra practice
+         // I could also have used a normal for loop
          int i = 0;
          for (String pathname : orders) {
             // Print the names of files and directories
@@ -66,25 +67,23 @@ public class FileManager {
 
             } catch (ArrayIndexOutOfBoundsException e) {
                System.out.println(e.getMessage());
-               System.out.println("Please try again");
+               System.out.println("Please enter a whole number between 0 and " + (orders.length-1));
                VehicleRental.keyboard.next(); // reset scanner otherwise enters infinite loop.
                continue;
-
             }
             break; // need this to leave do loop if try successful
          } while (true);
 
-         //wantedFilename = orders[3];
-
-         fileName = filePath + "/" + wantedFilename;
+         fileName = FILE_PATH + "/" + wantedFilename;
          System.out.println(read());
+         Pause.pause(3);
       }
    }
 
    public static void write(VehicleRental vehicleRental) {
       createFolder();
 
-      fileName = String.format("%s/%s_receipt_%s_%s.txt", filePath, vehicleRental.getRentalType(), vehicleRental.getDateID(), vehicleRental.getRentalID());
+      fileName = String.format("%s/%s_receipt_%s_%s.txt", FILE_PATH, vehicleRental.getRentalType(), vehicleRental.getDateID(), vehicleRental.getRentalID());
 
       create();
 

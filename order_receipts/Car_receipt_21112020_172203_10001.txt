@@ -1,0 +1,21 @@
+Date of order: 21-11-2020 17:22:03
+Rental ID: 10001
+Vehicle Make: 1
+Registration Number: 1
+Rental Duration (Days): 1
+
+ Daily Cost: £1.00
+Total Cost (before any additional fees): £1.00
+Daily Mileage Allowance: 150 miles
+Start Mileage: 1 miles
+
+End Mileage: to be recorded on vehicle return
+Average Daily Miles: to be calculated on vehicle return
+Additional Miles (over that contracted): to be calculated on vehicle return
+Extra Fee: £0.20 per mile:to be calculated on vehicle return
+Discount Percentage applied (selected at random): 0%
+
+Total Cost (after 0 % discount applied): to be calculated on vehicle return
+
+No. of seats in car: 1
+No. of doors in car:1

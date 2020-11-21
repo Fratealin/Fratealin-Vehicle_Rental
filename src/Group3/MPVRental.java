@@ -94,12 +94,9 @@ public class MPVRental extends VehicleRental {
 
    //Method to be utilised in Testing - creating Bus orders automatically
    public static void testBusOrder(int num) {
-      String type, make, reg;
-      int milesBefore, days, seats;
-      double fee;
       System.out.println("\nCREATING BUS RENTAL\n====================");
-      MPVRental thisBus = new MPVRental("MPV", "Lada", "MNV 153Y", 1000, 5, 75, 12);
-
+      MPVRental thisBus = new MPVRental("MPV", "Lada", "MNV 153Y", 1000,
+            5, 75, 12);
       //adding created object to arraylist
       Rentals.add(thisBus);
       // Write file using dateID
@@ -109,6 +106,6 @@ public class MPVRental extends VehicleRental {
       System.out.println("BUS RENTAL CREATED\n====================");
       System.out.println(thisBus);
 
-      MainMenu.mainMenu();
+      //MainMenu.mainMenu();
    }
 }//class
