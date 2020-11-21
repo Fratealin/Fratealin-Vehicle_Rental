@@ -14,12 +14,14 @@ public class SummaryTable {
 
    static int totalOrders;
    static int widthOfSummary = 5;
-   static DecimalFormat decimalFormat = new DecimalFormat("###,##0.00");
+   static DecimalFormat decimalFormat = new DecimalFormat("###,##0.##");
    static DecimalFormat currencyFormat = new DecimalFormat("£###,##0.00");
    static DecimalFormat df2 = new DecimalFormat("0.00");
 
    public static void displaySummary() {
       totalOrders=VehicleRental.Rentals.size();
+
+      // Create 2D array and add column titles
       String[][] orderSummary = new String[totalOrders+1][widthOfSummary];
 
       orderSummary[0][0] = "Date";
@@ -27,7 +29,6 @@ public class SummaryTable {
       orderSummary[0][2] = "Type";
       orderSummary[0][3] = "\tMiles Travelled";
       orderSummary[0][4] = "Cost(£)";
-
 
       //Fill 2D array
       for (int row = 0; row < totalOrders; row++) {
@@ -39,11 +40,12 @@ public class SummaryTable {
       }//end for
 
       System.out.println("=================");
-      System.out.println("Display Daily Rental Summary");
+      System.out.println("Rental Summary");
       double totalCost = 0;
       int totalMileage=0;
 
       System.out.println();
+      // Display summary table
       for (int row = 0; row < orderSummary.length; row++) {
          for(int col =0; col<widthOfSummary;col++){
             System.out.print("\t"+orderSummary[row][col]+"\t\t");
@@ -51,7 +53,7 @@ public class SummaryTable {
          System.out.println();
       }//end for
 
-      //calculate totals
+      // calculate totals
       for (int row = 1; row <=totalOrders; row++) {
          // calculate totals
          if(VehicleRental.Rentals.get(row-1).getTotalMileage()==0){
