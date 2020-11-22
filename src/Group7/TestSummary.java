@@ -1,4 +1,4 @@
-package Group3;
+package Group7;
 
 /**
  * Created by Ali Dore on 22/11/2020

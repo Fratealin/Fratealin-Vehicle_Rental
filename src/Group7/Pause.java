@@ -1,4 +1,4 @@
-package Group3;
+package Group7;
 /**
  * Created by Ali Dore on 17/11/2020
  * Pauses to allow user to read output on the terminal

@@ -1,6 +1,4 @@
-package Group3;
-
-import java.io.File;
+package Group7;
 
 /**
  * Created by Ali Dore on 21/11/2020

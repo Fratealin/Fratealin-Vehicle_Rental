@@ -1,4 +1,4 @@
-package Group3;
+package Group7;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;

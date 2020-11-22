@@ -1,4 +1,4 @@
-package Group3;
+package Group7;
 
 import java.text.DecimalFormat;
 
@@ -114,7 +114,7 @@ public class HGVRental extends VehicleRental {
          System.out.print("Daily fee (£): ");
          fee=ErrorHandler.getDoubleInput();;
          System.out.print("Height of this HGV?: ");
-         height= ErrorHandler.getDoubleInput();;
+         height= ErrorHandler.getDoubleInput();
          System.out.print("Load Capacity of this HGV?: ");
          loadCapacity=ErrorHandler.getDoubleInput();
 
