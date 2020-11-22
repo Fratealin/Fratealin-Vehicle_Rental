@@ -8,6 +8,7 @@ public class TestSummary
 {
    public static void main(String[] args)
    {
+      // Instantiate vehicle orders and add to array lists
       MPVRental testBus = new MPVRental("MPV", "Lada", "MNV 153Y", 1000,
             5, 75, 12);
       testBus.setEndMileage(1100);
@@ -16,9 +17,7 @@ public class TestSummary
 
       HGVRental testHGV=new HGVRental("HGV","Skoda","MNV 153Y",1000,5,50,5,100);
       testHGV.setEndMileage(1100);
-      //adding created object to arraylist
       VehicleRental.Rentals.add(testHGV);
-      //adding rental ID to Parralell arraylist
       VehicleRental.RentalsID.add(testHGV.getRentalID());
 
       CarRental testCar = new CarRental("Car", "Mini","MNV 153Y",500,4,40, 6, 5);
@@ -31,6 +30,7 @@ public class TestSummary
       VehicleRental.Rentals.add(testBus2);
       VehicleRental.RentalsID.add(testBus2.getRentalID());
 
+      // Display summary table and verify values are correct
       SummaryTable.displaySummary();
 
 
