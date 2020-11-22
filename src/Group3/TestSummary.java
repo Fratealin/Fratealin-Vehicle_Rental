@@ -2,7 +2,7 @@ package Group3;
 
 /**
  * Created by Ali Dore on 22/11/2020
- * COMMENTS ABOUT PROGRAM HERE
+ * Test SummaryTable class
  */
 public class TestSummary
 {

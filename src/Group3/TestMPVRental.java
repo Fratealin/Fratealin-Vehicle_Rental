@@ -2,7 +2,7 @@ package Group3;
 
 /**
  * Created by Ali Dore on 21/11/2020
- * COMMENTS ABOUT PROGRAM HERE
+ * Test MPVRental class and methods
  */
 public class TestMPVRental
 {
