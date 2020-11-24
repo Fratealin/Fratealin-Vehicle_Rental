@@ -41,7 +41,7 @@ abstract public class VehicleRental {
    private int endMileage=0, totalMileage;
    private final double EXTRA_FEE_PER_MILE=0.2;
    private final int DAILY_MILES_ALLOWED=150;
-   private double averageDailyMiles, totalRentalCost;
+   private double totalRentalCost;
    protected static double totalRevenue;
 
 
@@ -91,7 +91,8 @@ abstract public class VehicleRental {
       discount= randomSelection();
    }//end alternative constructor
 
-   //alternative constructor method
+   //alternative constructor method - can be used if creating orders passing parameters relating to MilesBefore and
+   // duration
    public VehicleRental(int MilesBefore, int lengthDays){
       make="unknown";
       regNum="***";
@@ -107,7 +108,8 @@ abstract public class VehicleRental {
       discount= randomSelection();
    }//end alternative constructor
 
-   //alternative constructor method
+   //alternative constructor method - can be used if creating order passing parameters relating to Reg, MilesBefore
+   // and fee
    public VehicleRental(String itsRegNum, int MilesBefore, double dailyFee){
       make="unknown";
       regNum=itsRegNum;
@@ -123,7 +125,8 @@ abstract public class VehicleRental {
       discount= randomSelection();
    }//end alternative constructor
 
-   //alternative constructor
+   //alternative constructor - can be used if creating orders passing parameters relating to  make, reg, beforeMiles,
+   // duration and daily fee
    public VehicleRental(String make, String reg, int beforeMiles, int numDays, double dailyFee) {
       rentalID=uniqueNum;
       uniqueNum++;
@@ -136,6 +139,8 @@ abstract public class VehicleRental {
    }//end alternative constructor
 
 
+   //get and set methods are not all utilised in the code at present, but there are included for future developements
+   // of the program
 
    //method to getRentalID
    protected int getRentalID() {
@@ -159,7 +164,7 @@ abstract public class VehicleRental {
       }//end if
       else{
          return 0;
-      }
+      }///end else
    }//end getRentalID
 
    //method for setMake()
@@ -222,9 +227,10 @@ abstract public class VehicleRental {
       return endMileage;
    }//end getEndMileage()
 
+   //getRentalType
    protected String getRentalType() {
       return rentalType;
-   }
+   }//end getRentalType
 
    //method to calculate averageDailyMiles()
    protected double calculateAverageDailyMiles(){
@@ -233,7 +239,13 @@ abstract public class VehicleRental {
 
    //method to calculate additional fee based on mileage
    protected double calculateAdditionalFee(){
-      return (calculateAverageDailyMiles() - DAILY_MILES_ALLOWED)*numDays*EXTRA_FEE_PER_MILE;
+      double answer = (calculateAverageDailyMiles() - DAILY_MILES_ALLOWED)*numDays*EXTRA_FEE_PER_MILE;
+      if(answer<0){
+         return 0;
+      }//end if
+      else {
+         return (calculateAverageDailyMiles() - DAILY_MILES_ALLOWED)*numDays*EXTRA_FEE_PER_MILE;
+      }//end else
    }//end calculateAdditionalFee
 
    //method to calulcate totol Rental price
@@ -245,8 +257,7 @@ abstract public class VehicleRental {
       }//end if
       else{
          return 0;
-      }//enf else
-
+      }//end else
    }//end calculatetotalRentalCost()
 
    //method to populate array with int values representing discount
@@ -261,12 +272,10 @@ abstract public class VehicleRental {
       // display array of discounts
       System.out.print("This is the array of percentage discounts: ");
       String result = Arrays.stream(percentageDiscount).mapToObj(String::valueOf).collect(Collectors.joining(", "));
-      //System.out.println(Arrays.toString(percentageDiscount));
       System.out.println(result);
 
       String wait = keyboard.nextLine();
       MainMenu.mainMenu();
-
    }// end autoUpdateDiscountList()
 
 
@@ -279,7 +288,7 @@ abstract public class VehicleRental {
 
    //abstract method getVehicleType()
    abstract protected String getVehicleType();
-   //end
+   //end getVehicleType
 
    //toString Method
    public String toString() {
@@ -368,7 +377,15 @@ abstract public class VehicleRental {
 
       if (found){
          System.out.println("Please enter end mileage of Rental id: "+ requiredNumber);
+         System.out.println("The end mileage must be greater than " + Rentals.get(position).getStartMileage()+" " +
+               "(start mileage).");
          endMiles= keyboard.nextInt();
+         while(!(endMiles> Rentals.get(position).getStartMileage())){
+            System.out.println("Try again.");
+            System.out.println("The end mileage must be greater than " + Rentals.get(position).getStartMileage());
+            System.out.println("Please enter end mileage of Rental id: "+ requiredNumber);
+            endMiles= keyboard.nextInt();
+         }//end while
          Rentals.get(position).setEndMileage(endMiles);
          //total rental cost added to total revenue
          totalRevenue=totalRevenue+Rentals.get(position).calculateTotalRentalCost();
@@ -378,7 +395,6 @@ abstract public class VehicleRental {
       }//end else
 
       MainMenu.mainMenu();
-
    }//end returnVehicle
 
 }//class

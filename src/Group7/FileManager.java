@@ -61,7 +61,7 @@ public class FileManager {
          do {
             try {
 
-               index = ErrorHandler.getIntegerInput();
+               index = Group7.ErrorHandler.getIntegerInput();
 
                wantedFilename = orders[index];
 

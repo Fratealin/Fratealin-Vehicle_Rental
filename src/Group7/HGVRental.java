@@ -112,11 +112,11 @@ public class HGVRental extends VehicleRental {
          System.out.print("Days rented for: ");
          days= ErrorHandler.getIntegerInput();
          System.out.print("Daily fee (£): ");
-         fee=ErrorHandler.getDoubleInput();;
+         fee= ErrorHandler.getDoubleInput();;
          System.out.print("Height of this HGV?: ");
          height= ErrorHandler.getDoubleInput();
          System.out.print("Load Capacity of this HGV?: ");
-         loadCapacity=ErrorHandler.getDoubleInput();
+         loadCapacity= ErrorHandler.getDoubleInput();
 
          //creating object with user input
          HGVRental thisHGV=new HGVRental(type,make,reg,milesBefore,days,fee,height,loadCapacity);

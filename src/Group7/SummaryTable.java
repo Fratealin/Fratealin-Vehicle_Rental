@@ -67,9 +67,9 @@ public class SummaryTable {
 
       //display totals
       System.out.println();
-      System.out.println("Total number of buses rented: " + Group7.MPVRental.getNumberBusRentals());
-      System.out.println("Total number of cars rented: "+ Group7.CarRental.getNumberCarRentals());
-      System.out.println("Total number of HGVs rented: "+ Group7.HGVRental.getNumberHGVRentals());
+      System.out.println("Total number of buses rented: " + MPVRental.getNumberBusRentals());
+      System.out.println("Total number of cars rented: "+ CarRental.getNumberCarRentals());
+      System.out.println("Total number of HGVs rented: "+ HGVRental.getNumberHGVRentals());
       System.out.println("Total number of Vehicles rented " + VehicleRental.Rentals.size());
       System.out.println("Total mileage for all vehicles rented: " + decimalFormat.format(totalMileage));
       System.out.println("Total revenue from all vehicles rented: " + currencyFormat.format(totalCost));

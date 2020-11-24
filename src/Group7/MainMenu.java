@@ -27,7 +27,7 @@ public class MainMenu {
             "5. Update Discount List \n6. Display number of rental orders \n7. Print Summary list of all rentals " +
             "\n8. Display Total Revenue \n9. Access rental receipts on our Database \n0. Quit?");
 
-      choice = ErrorHandler.getIntegerInput();
+      choice = Group7.ErrorHandler.getIntegerInput();
 
       switch (choice) {
          case 1:
@@ -37,7 +37,7 @@ public class MainMenu {
             System.out.println("What type of vehicle rental order would you like to make?:");
             System.out.println("1. Car\n2. MPV\n3. HGV");
 
-            choice = ErrorHandler.getIntegerInput();
+            choice = Group7.ErrorHandler.getIntegerInput();
 
             //nested switch statement - Create order
             switch (choice) {
@@ -69,21 +69,21 @@ public class MainMenu {
                   //prompt user to enter number of Cars to rent
                   System.out.println("Please enter number of cars you wish to rent");
                   numCars = ErrorHandler.getIntegerInput();
-                  CarRental.makeCarOrder(numCars);
+                  Group7.CarRental.makeCarOrder(numCars);
                   break;
 
                case 2:
                   //prompt user to enter number of buses needed
                   System.out.println("Please enter number of buses you wish to rent");
                   numBus = ErrorHandler.getIntegerInput();
-                  MPVRental.makeBusOrder(numBus);
+                  Group7.MPVRental.makeBusOrder(numBus);
                   break;
 
                case 3:
                   //prompt user to enter number of Cars needed
                   System.out.println("Please enter number of HGV you wish to rent");
                   numHGV = ErrorHandler.getIntegerInput();
-                  HGVRental.createHGVOrder(numHGV);
+                  Group7.HGVRental.createHGVOrder(numHGV);
                   break;
 
             }//end nested switch
@@ -115,7 +115,7 @@ public class MainMenu {
             System.out.println("Return a Vehicle");
             System.out.println("================");
 
-            // TODO: Ali did this so the user knows what their options are
+            // informs the user as to which rental orders have been made
             for (VehicleRental thisOrder : VehicleRental.Rentals) {
                System.out.println(thisOrder.getRentalType() + " " + thisOrder.getRentalID() + " " + thisOrder.dateOfOrder);
             }
@@ -143,7 +143,7 @@ public class MainMenu {
 
                case 1:
                   System.out.println();
-                  System.out.println("Total number of car rentals: " + CarRental.getNumberCarRentals());
+                  System.out.println("Total number of car rentals: " +CarRental.getNumberCarRentals());
                   mainMenu();
                   break;
                case 2:
